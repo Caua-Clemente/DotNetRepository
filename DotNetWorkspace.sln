@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Semana1", "Semana1\Semana1.csproj", "{024B3B8D-C8CF-4EC3-B08D-E337C2603E9C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Semana2", "Semana2", "{09039403-C67F-427E-9962-C40C7FF66823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExemplosAulas", "Semana2\ExemplosAulas\ExemplosAulas.csproj", "{68DC5913-0C73-4672-8443-10D2B378AAAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +19,18 @@ Global
 		{024B3B8D-C8CF-4EC3-B08D-E337C2603E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{024B3B8D-C8CF-4EC3-B08D-E337C2603E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{024B3B8D-C8CF-4EC3-B08D-E337C2603E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DC5913-0C73-4672-8443-10D2B378AAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DC5913-0C73-4672-8443-10D2B378AAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DC5913-0C73-4672-8443-10D2B378AAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DC5913-0C73-4672-8443-10D2B378AAAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA8F0EA3-AAA2-4589-8CF0-05668521F3A9}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{68DC5913-0C73-4672-8443-10D2B378AAAC} = {09039403-C67F-427E-9962-C40C7FF66823}
 	EndGlobalSection
 EndGlobal
