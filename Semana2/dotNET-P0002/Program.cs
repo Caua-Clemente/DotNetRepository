@@ -2,11 +2,33 @@
     private string titulo;
     private string descricao;
     private DateTime dataVencimento;
+    private bool concluido;
     
     public Tarefa(string titulo, string descricao, DateTime dataVencimento){
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataVencimento = dataVencimento;
+        this.concluido = false;
+    }
+
+    public string getTitulo(){
+        return this.titulo;
+    }
+
+    public string getDescricao(){
+        return this.descricao;
+    }
+
+    public DateTime getData(){
+        return this.dataVencimento;
+    }
+
+    public bool getConcluido(){
+        return this.concluido;
+    }
+
+    public void setConcluido(){
+        this.concluido = true;
     }
 }
 
@@ -14,47 +36,118 @@ class ListaTarefa{
     private List<Tarefa> tarefas;
 
     public void criarTarefa(){
+        string titulo, descricao, dataStr;
+        int dia, mes, ano;
 
+        Console.WriteLine("Digite o titulo da tarefa: ");
+        titulo = Console.ReadLine();
+
+        Console.WriteLine("Digite a descricao da tarefa: ");
+        descricao = Console.ReadLine();
+
+        Console.WriteLine("Digite a data de vencimento da terefa (dd/mm/aaaa): ");
+        dataStr = Console.ReadLine();
+
+        dia = int.Parse(dataStr.Substring(0,2));
+        mes = int.Parse(dataStr.Substring(3,2));
+        ano = int.Parse(dataStr.Substring(6,4));
+
+        DateTime data = new DateTime(ano, mes, dia, 0, 0, 0, 0);
+
+        Tarefa tarefa = new Tarefa(titulo, descricao, data);
+        this.tarefas.Add(tarefa);
+        Console.WriteLine("Tarefa criada com sucesso! \n");
     }
 
-    public void visualizarTarefa(){
-        
+    public void visualizarTarefa(int index){
+        Tarefa tarefa = this.tarefas[index];
+        Console.WriteLine(tarefa.getTitulo());
+        Console.WriteLine(tarefa.getDescricao());
+        Console.WriteLine("Data de vencimento: " + tarefa.getData());
+        if(tarefa.getConcluido())
+            Console.WriteLine("Concluido \n");
+        else
+            Console.WriteLine("Nao concluido \n");
     }
 
     public void listarTarefas(){
-
+        for(int i = 0; i < tarefas.Count; i++){
+            visualizarTarefa(i);
+        }
     }
 
     public void marcarConcluida(){
-
+        int index;
+        Console.WriteLine("Digite o numero da tarefa a ser marcada: ");
+        index = int.Parse(Console.ReadLine());
+        if(tarefas[index].getConcluido())
+            Console.WriteLine("A tarefa ja foi concluida\n");
+        else {
+            this.tarefas[index].setConcluido();
+            Console.WriteLine("Tarefa concluida com sucesso \n");
+        }
     }
 
     public void listarPendentes(){
-
+        Console.WriteLine("Tarefas pendentes: \n");
+        for(int i = 0; i < tarefas.Count; i++){
+            if(!tarefas[i].getConcluido())
+                visualizarTarefa(i);
+        }
     }
 
     public void listarConcluidas(){
-
+        Console.WriteLine("Tarefas concluidas: \n");
+        for(int i = 0; i < tarefas.Count; i++){
+            if(tarefas[i].getConcluido())
+                visualizarTarefa(i);
+        }
     }
 
     public void excluirTarefa(){
-
+        int index;
+        Console.WriteLine("Digite o numero da tarefa a ser marcada: ");
+        index = int.Parse(Console.ReadLine());
+        if(index < 0 || index >= tarefas.Count)
+            Console.WriteLine("Nao existe nenhuma tarefa na posicao digitada \n");
+        else {
+            tarefas.RemoveAt(index);
+            Console.WriteLine("Tarefa excluida com sucesso \n");
+        }
     }
 
     public void pesquisa(){
-
+        string word;
+        Console.WriteLine("Digite uma palavra chave: ");
+        word = Console.ReadLine();
+        for(int i = 0; i < tarefas.Count; i++){
+            if(tarefas[i].getTitulo().Contains(word) || tarefas[i].getDescricao().Contains(word))
+                visualizarTarefa(i);
+        }
     }
 
     public void qtdeTotal(){
-
+        Console.WriteLine("Quantidade total de tarefas: " + tarefas.Count);
     }
 
     public void qtdeConcluida(){
-
+        int qtde = 0;
+        for(int i = 0; i < tarefas.Count; i++){
+            if(tarefas[i].getConcluido())
+                qtde += 1;
+        }
+        
+        Console.WriteLine("Quantidade de tarefas concluidas: " + qtde);
     }
 
     public void qtdePendente(){
-
+        int qtde = 0;
+        for(int i = 0; i < tarefas.Count; i++){
+            if(!tarefas[i].getConcluido())
+                qtde += 1;
+        }
+        
+        Console.WriteLine("Quantidade de tarefas pendentes: " + qtde);
     }
 
     public void tarefaAntiga(){
