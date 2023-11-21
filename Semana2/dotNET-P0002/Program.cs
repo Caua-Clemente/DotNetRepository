@@ -35,6 +35,9 @@
 class ListaTarefa{
     private List<Tarefa> tarefas;
 
+    public ListaTarefa(){
+        tarefas = new List<Tarefa>();
+    }
     public void criarTarefa(){
         string titulo, descricao, dataStr;
         int dia, mes, ano;
@@ -71,6 +74,10 @@ class ListaTarefa{
     }
 
     public void listarTarefas(){
+        if(tarefas.Count == 0){
+            Console.WriteLine("A lista de tarefas esta vazia \n");
+            return;
+        }
         for(int i = 0; i < tarefas.Count; i++){
             visualizarTarefa(i);
         }
@@ -80,6 +87,11 @@ class ListaTarefa{
         int index;
         Console.WriteLine("Digite o numero da tarefa a ser marcada: ");
         index = int.Parse(Console.ReadLine());
+        if(index < 0 || index >= tarefas.Count){
+            Console.WriteLine("Nao existe nenhuma tarefa na posicao digitada \n");
+            return;
+        }
+
         if(tarefas[index].getConcluido())
             Console.WriteLine("A tarefa ja foi concluida\n");
         else {
@@ -127,7 +139,7 @@ class ListaTarefa{
     }
 
     public void qtdeTotal(){
-        Console.WriteLine("Quantidade total de tarefas: " + tarefas.Count);
+        Console.WriteLine("Quantidade total de tarefas: " + tarefas.Count + "\n");
     }
 
     public void qtdeConcluida(){
@@ -137,7 +149,7 @@ class ListaTarefa{
                 qtde += 1;
         }
         
-        Console.WriteLine("Quantidade de tarefas concluidas: " + qtde);
+        Console.WriteLine("Quantidade de tarefas concluidas: " + qtde + "\n");
     }
 
     public void qtdePendente(){
@@ -147,15 +159,34 @@ class ListaTarefa{
                 qtde += 1;
         }
         
-        Console.WriteLine("Quantidade de tarefas pendentes: " + qtde);
+        Console.WriteLine("Quantidade de tarefas pendentes: " + qtde + "\n");
     }
 
     public void tarefaAntiga(){
-
+        /*
+        int index = 0;
+        for(int i = 0; i < tarefas.Count - 1; i++){
+            if(tarefas[i].getData() > tarefas[i+1].getData()){
+                index = i+1;
+            }
+        }
+        //Não entendi se a tarefa mais antiga seria pela data de vencimento ou
+        //pela ordem de criacao na lista. Optei por deixar os dois, tanto aqui
+        //quanto no proximo metodo
+        */
+        visualizarTarefa(0);
     }
 
     public void tarefaRecente(){
-
+        /*
+        int index = 0;
+        for(int i = 0; i < tarefas.Count - 1; i++){
+            if(tarefas[i].getData() < tarefas[i+1].getData()){
+                index = i+1;
+            }
+        }
+        */
+        visualizarTarefa(tarefas.Count-1);
     }
 
 }
@@ -166,7 +197,7 @@ class Program(){
         ListaTarefa lista = new ListaTarefa();
 
         do {
-            Console.WriteLine("--- Menu de opcoes---");
+            Console.WriteLine("\n \n--- Menu de opcoes---");
             Console.WriteLine("1 - Criar tarefa \n2 - Listar Tarefas");
             Console.WriteLine("3 - Marcar tarefa como concluida \n4 - Listar Tarefas pendentes");
             Console.WriteLine("5 - Listar Tarefas concluidas \n6 - Excluir tarefa");
