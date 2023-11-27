@@ -226,6 +226,11 @@ void linqMinMax(List<(int cod, string nome, int qtde, float preco)> estoque){
         return;
     }
 
+    if(minimo >= maximo){
+        Console.WriteLine("Erro: \nO valor maximo precisa ser maior que o valor minimo");
+        return;
+    }
+
     Console.WriteLine($"Lista de estoques com produtos de R${minimo} a R${maximo}: ");
     var estoqueMinMax = estoque.Where(x => x.preco >= minimo && x.preco <= maximo);
     Console.WriteLine(string.Join("\n", estoqueMinMax.Select(e => $"{e.cod} - {e.nome} - R${e.preco} - {e.qtde}")));
